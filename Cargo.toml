@@ -1,0 +1,37 @@
+[package]
+name = "renderer"
+version = "0.1.0"
+authors = ["Bug0r"]
+
+[dependencies]
+math = { path = "../math-rust", version = "*" }
+
+[lib]
+name = "renderer"
+crate-type = ["rlib"] # could be `staticlib` and 'dylib' or 'rlib' as well
+
+[features]
+output = [] # output for rendered textures or buffer
+julia = [] # tests julia texturing
+mandelbrot = [] # tests mandelbrot texturing
+md = [] # midpoint displacement texturing
+ds = [] # diamond square texturing
+filter_arith = [] # average texture filter apply on texture
+filter_gauss = [] # gauss texture filter apply on texture
+# there are median filter too, but that won't work yet
+perspective = [] # using perspective projection in test
+orthogonal = [] # using orthogonal projection in test
+all = [] # this will run all tests
+point = [] # this will test only points
+line = [] # this will test only line
+triangle = [] # this will test only triangle
+quad = [] # this will test only quad
+cube = [] # this will test only cube
+cylinder = [] # this will test only cylinder
+cone = [] # this will test only cone
+block = [] # this will test only block
+texture = [] # this will test texture rendering
+scene = [] # this will test complete scene
+nomsaa = [] # tests without multi sampling anti aliasing
+msaa2x2 = [] # tests MSAA with 4 subpixel
+msaa4x4 = [] # tests MSAA with 16 subpixel

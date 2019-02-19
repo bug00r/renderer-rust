@@ -1,0 +1,90 @@
+BUGS:
+	- something wrong with perspective projection and also with MSAA in perspective projection
+	- in the main renderer is sadly switched  view with projection matrix
+TODO:
+
+++ research ++
+- create Rustlib for usage in python => so we can use our existing Portal and Speed up with Rustlib
+	Ressources: 
+		- http://jakegoulding.com/rust-ffi-omnibus/objects/   <= Full usable example preffered
+		- https://doc.rust-lang.org/book/second-edition/ch19-01-unsafe-rust.html#using-extern-functions-to-call-external-code
+		- https://bheisler.github.io/post/calling-rust-in-python/ <= but with usage of other python module :(
+
+
+++ must ++
+
+- After complete Renderer works we should replace all Vec<Color|f32> ini and usage with unsafe Pointer Arithetik in Reason of Speed
+- After realize Renderer we have to make a Renderer Trait and Use as implementation as Rasterizer
+- renderer_ui (dependency: renderer scene mesh shape texture noise fractals color statistics utilsmath mat vec)
+	(here we must make a decision abou UI lib)
+
+++ optional ++
+
+- there is a guy who wrote a c to rust transpiler. He ask for some Support about thoughts
+	I'm working on a C to Rust translator. No support for C++ yet and still maturing, but if you have any thoughts, 
+	I'd love to connect. Demo https://c2rust.com, any kind of feedback is greatly appreciated.
+- Making my Software Renderer open source.
+- Writing a Tutorial about my Software renderer
+
+TODO-later:
+	- testing all texture filter
+	- reimplement median filter => its wrong today
+	
+DONE:
+
+- math
+	- vec
+	- mat
+	- utils(dependency: vec mat)
+	- statistics
+	- algorithm
+		- fractals(dependency: utilsmath mat vec)
+		- noise(dependency: statistics utilsmath mat vec)
+- color (there is no need about special array types)
+	- brightness and contrast function
+- texture (dependecy: fractals noise color statistics utilsmath mat vec)
+- shape (dependency: color utilsmath mat vec )
+- mesh (dependency: shape color utilsmath mat vec )
+- scene (dependency: mesh shape color utilsmath mat vec  )
+- renderer ( scene mesh shape texture noise fractals color statistics utilsmath mat vec)
+	- camera
+	- rasterizer
+		- point
+
+- Check why z-buffer value is invalid from single point and check point raster test.
+	- thats happens if z of point is 0.0 maybe there could be checked if its 0.0 and the set 0.0000000001 or anything else
+
+IN WORK:
+	
+- renderer ( scene mesh shape texture noise fractals color statistics utilsmath mat vec)
+	- rasterizer
+		- TO CONTROL Tests we need more feature for:
+			- perspective and orthogonal rendering
+			- every geometric object like point, line, quad....
+			- output for rendering as ppm File => exist
+			- debug for printlns if need.
+		- line
+		
+
+REMARKS:
+
+This functions never useful anymore:
+
+An array has sort method in Rust
+int compare_floats(const void* a, const void* b){
+    const float arg1 = *(const float*)a;
+    const float arg2 = *(const float*)b;
+ 
+    if (arg1 < arg2) return -1;
+    if (arg1 > arg2) return 1;
+    return 0;
+}
+
+Rust support random numbers
+float seedrndlh(const float lnum, const float hnum){
+	return lnum + ((float)rand()/((float)(RAND_MAX)/(hnum-lnum)));
+}
+
+float seedrnd(const float seed){
+	return (((float)rand()/(float)(RAND_MAX)) * 2.f * seed) - seed;
+}
