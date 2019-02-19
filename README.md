@@ -1,2 +1,2 @@
 # renderer-rust
-A experimental Software Raserizer written in pure Rust
+A experimental Software Rasterizer written in pure Rust
